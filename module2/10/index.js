@@ -9,9 +9,17 @@ for (let i = 0; i < num_of_candidates; i++) {
 const num_of_voters = Number(prompt('Enter the number of voters:'));
 
 for (let i = 0; i < num_of_voters; i++) {
-    const vote = Number(prompt(`Vote for candidate enter value 1 - ${candidates.length}:`));
-    if(isNaN(vote) === false && vote > 0 && vote <= candidates.length) {
-        candidates[vote - 1].votes++;
+    const vote = prompt(`Vote for candidate enter candidate name or number:`);
+    if(isNaN(vote)) {
+        const candidate = candidates.find(candidate => candidate.name === vote);
+        if(candidate) {
+            candidate.votes++;
+        }
+    } else {
+        const candidate = candidates[vote - 1];
+        if(candidate) {
+            candidate.votes++;
+        }
     }
 }
 
